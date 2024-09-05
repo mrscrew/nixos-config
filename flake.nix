@@ -19,32 +19,34 @@
       system = "x86_64-linux";
     in
     {
-
-      # nixos - system hostname
-      nixosConfigurations.nixos-master = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          pkgs-stable = import nixpkgs-stable {
-            inherit system;
-            config.allowUnfree = true;
+      # Конфигурации хостов
+      nixosConfigurations = {
+        # nixos-master
+        nixos-master = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            pkgs-stable = import nixpkgs-stable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+            inherit inputs system;
           };
-          inherit inputs system;
+          modules = [
+            ./nixos/configuration.nix
+          ];
         };
-        modules = [
-          ./nixos/configuration.nix
-        ];
-      };
-      # nixos - system hostname
-      nixosConfigurations.nixos-mama = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          pkgs-stable = import nixpkgs-stable {
-            inherit system;
-            config.allowUnfree = true;
+        # nixos-mama
+        nixos-mama = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            pkgs-stable = import nixpkgs-stable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+            inherit inputs system;
           };
-          inherit inputs system;
+          modules = [
+            ./nixos/configuration.nix
+          ];
         };
-        modules = [
-          ./nixos/configuration.nix
-        ];
       };
 
       homeConfigurations.master = home-manager.lib.homeManagerConfiguration {
