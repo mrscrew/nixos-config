@@ -1,6 +1,6 @@
 { inputs, ... }: {
   imports = [
-    ./hardware-configuration.nix
+    ./hardware-configuration-nixos-mama.nix
     ./packages.nix
     ./modules/bundle.nix
   ];
@@ -9,15 +9,8 @@
   #    ./modules/xserver.nix
   #  ];
 
-  #nixpkgs.overlays = [ inputs.polymc.overlay ];
-
   # Define your hostname.
-  nixos-master = {
-    networking.hostName = "nixos-master";
-  };
-  nixos-mama = {
-    networking.hostName = "nixos-mama";
-  };
+  networking.hostName = "nixos-mama";
 
   time.timeZone = "Europe/Moscow"; # Set your time zone.
 

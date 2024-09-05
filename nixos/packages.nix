@@ -9,19 +9,6 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-  ]) ++ (with pkgs; [
-    cheese # webcam tool
-    gnome-music
-    gnome-terminal
-    gedit # text editor
-    evince # document viewer
-    gnome-characters
-    totem # video player
-  ]);
-
   programs.kdeconnect = {
     enable = true;
     package = pkgs.gnomeExtensions.gsconnect;
@@ -31,6 +18,22 @@
   programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
+    # Gnome Apps
+    gnome-photos
+    gnome-tour
+    cheese # webcam tool
+    gnome-music
+    gnome-terminal
+    gedit # text editor
+    evince # document viewer
+    gnome-characters
+    totem # video player
+
+     # GNOME Extensions
+    gnomeExtensions.settingscenter
+    gnomeExtensions.appindicator
+    gnomeExtensions.gsconnect
+
     # Desktop apps
     libreoffice-qt6-fresh
     megasync
@@ -65,11 +68,6 @@
     wineWowPackages.stable
     wineWowPackages.staging
     winetricks
-
-    # GNOME Extensions
-    gnomeExtensions.settingscenter
-    gnomeExtensions.appindicator
-    gnomeExtensions.gsconnect
 
     # Coding stuff
     gnumake
@@ -108,47 +106,16 @@
     numix-icon-theme
     numix-icon-theme-circle
     numix-cursor-theme
-    # feh
-    # imv
-    # dmenu
-    # screenkey
-    # mako
-    # gromit-mpx
-
-    # Xorg stuff
-    #xterm
-    #xclip
-    #xorg.xbacklight
 
     # Wayland stuff
     xwayland
     wl-clipboard
     cliphist
 
-    # WMs and stuff
-    # herbstluftwm
-    # hyprland
-    # seatd
-    # xdg-desktop-portal-hyprland
-    # polybar
-    # waybar
-
     # Sound
     pipewire
     pulseaudio
     pamixer
-
-    # GPU stuff 
-    # amdvlk
-    # rocm-opencl-icd
-    # glaxnimate
-
-    # Screenshotting
-    # grim
-    # grimblast
-    # slurp
-    # flameshot
-    # swappy
 
     # Other
     home-manager
@@ -162,10 +129,6 @@
     jetbrains-mono
     noto-fonts
     noto-fonts-emoji
-    twemoji-color-font
     font-awesome
-    powerline-fonts
-    powerline-symbols
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 }
